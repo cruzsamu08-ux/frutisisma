@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Furtísima: frescura, sabor y productos frutales.">
+  <title>Furtísima | Frescura y sabor</title>
+
+  <style>
+    :root {
+      --green: #286747;
+      --light-green: #eaf5e9;
+      --orange: #ffad55;
+      --background: #fffdf7;
+      --text: #27352b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 11px 16px;
+      cursor: pointer;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 18px 7%;
+      background: white;
+      box-shadow: 0 2px 10px #0000000a;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--green);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a:hover {
+      color: #e98734;
+    }
+
+    .cart-button {
+      background: var(--light-green);
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .hero {
+      min-height: 440px;
+      padding: 70px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      background: linear-gradient(120deg, #edf8e7, #fff0dc);
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .tag {
+      color: var(--green);
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.12;
+      margin: 18px 0;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin: 10px 0;
+    }
+
+    .hero p {
+      margin-bottom: 25px;
+      color: #566359;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 23px;
+      border-radius: 9px;
+      background: var(--green);
+      color: white;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #194c32;
+    }
+
+    .hero-fruits {
+      padding: 35px 25px;
+      border-radius: 50%;
+      background: white;
+      font-size: clamp(4rem, 9vw, 8rem);
+      box-shadow: 0 12px 40px #315b2b15;
+    }
+
+    .section {
+      padding: 75px 8%;
+      text-align: center;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: #667267;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+      margin-top: 35px;
+      text-align: left;
+    }
+
+    .product-card {
+      padding: 20px;
+      border: 1px solid #eeeee5;
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 6px 22px #00000008;
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-image {
+      min-height: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      border-radius: 13px;
+      background: var(--light-green);
+      font-size: 5rem;
+    }
+
+    .product-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .product-card p {
+      min-height: 48px;
+      color: #667267;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .price {
+      color: var(--green);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .add-button {
+      background: var(--orange);
+      color: #342719;
+      font-weight: bold;
+    }
+
+    .add-button:hover {
+      background: #f69a39;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 35px;
+      padding: 65px 10%;
+      background: var(--light-green);
+    }
+
+    .about-icon {
+      font-size: 6rem;
+    }
+
+    .about-text {
+      max-width: 620px;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 520px;
+      margin: 30px auto 0;
+      text-align: left;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d8dfd7;
+      border-radius: 8px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    #form-status {
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      padding: 35px 20px;
+      background: #eaf3e6;
+      text-align: center;
+    }
+
+    footer p {
+      margin-top: 7px;
+    }
+
+    dialog {
+      width: min(92%, 480px);
+      max-height: 80vh;
+      overflow: auto;
+      margin: auto;
+      padding: 25px;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 15px 60px #0004;
+    }
+
+    dialog::backdrop {
+      background: #0006;
+    }
+
+    dialog h2, dialog p, dialog ul {
+      margin-bottom: 15px;
+    }
+
+    dialog li {
+      margin: 10px 0 10px 20px;
+    }
+
+    .cart-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .secondary-button {
+      background: #eeeeee;
+      color: #333333;
+    }
+
+    @media (max-width: 760px) {
+      .header {
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 55px 7%;
+        text-align: center;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .section {
+        padding: 55px 7%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="#inicio" class="logo">🍓 Furtísima</a>
+
+    <nav aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <button class="cart-button" id="open-cart">
+      🛒 Carrito (<span id="cart-count">0</span>)
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <span class="tag">Frescura en cada bocado</span>
+        <h1>¡Disfruta el sabor de lo natural!</h1>
+        <p>
+          En Furtísima encuentras sabor, frescura y color
+          en deliciosas opciones frutales para compartir.
+        </p>
+        <a href="#productos" class="button">Ver productos</a>
+      </div>
+
+      <div class="hero-fruits" role="img" aria-label="Frutas frescas">
+        🍓🍍🍉
+      </div>
+    </section>
+
+    <section class="section" id="productos">
+      <span class="tag">Nuestro catálogo</span>
+      <h2>Productos destacados</h2>
+      <p class="subtitle">¡Encuentra tu favorito!</p>
+
+      <div class="products">
+        <article class="product-card">
+          <div class="product-image">🍓</div>
+          <h3>Fresas frescas</h3>
+          <p>Fresas deliciosas para disfrutar en cualquier momento.</p>
+          <div class="product-bottom">
+            <span class="price">$8.000</span>
+            <button class="add-button" data-name="Fresas frescas"
+              data-price="8000">Agregar</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">🥭</div>
+          <h3>Mango dulce</h3>
+          <p>El sabor tropical del mango en cada bocado.</p>
+          <div class="product-bottom">
+            <span class="price">$6.000</span>
+            <button class="add-button" data-name="Mango dulce"
+              data-price="6000">Agregar</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">🍉</div>
+          <h3>Sandía fresca</h3>
+          <p>Una opción refrescante, llena de sabor natural.</p>
+          <div class="product-bottom">
+            <span class="price">$5.000</span>
+            <button class="add-button" data-name="Sandía fresca"
+              data-price="5000">Agregar</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">🍇</div>
+          <h3>Uvas frescas</h3>
+          <p>Pequeñas, dulces y perfectas para compartir.</p>
+          <div class="product-bottom">
+            <span class="price">$7.000</span>
+            <button class="add-button" data-name="Uvas frescas"
+              data-price="7000">Agregar</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">🍍</div>
+          <h3>Piña tropical</h3>
+          <p>Piña de sabor tropical para alegrar tu día.</p>
+          <div class="product-bottom">
+            <span class="price">$5.500</span>
+            <button class="add-button" data-name="Piña tropical"
+              data-price="5500">Agregar</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">🥝</div>
+          <h3>Kiwi natural</h3>
+          <p>Una fruta de sabor único para variar tus favoritos.</p>
+          <div class="product-bottom">
+            <span class="price">$4.500</span>
+            <button class="add-button" data-name="Kiwi natural"
+              data-price="4500">Agregar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="nosotros">
+      <div class="about-icon">🌱</div>
+      <div class="about-text">
+        <span class="tag">Nuestra esencia</span>
+        <h2>Conoce Furtísima</h2>
+        <p>
+          Somos una propuesta dedicada a compartir el sabor
+          de las frutas con una experiencia sencilla,
+          atractiva y llena de color.
+        </p>
+        <p>
+          Nuestro propósito es que disfrutes cada producto
+          y encuentres nuevas formas de saborear lo natural.
+        </p>
+      </div>
+    </section>
+
+    <section class="section contact" id="contacto">
+      <span class="tag">Estamos para ayudarte</span>
+      <h2>Contáctanos</h2>
+      <p class="subtitle">Completa el formulario para registrar tu mensaje.</p>
+
+      <form id="contact-form">
+        <label for="name">Nombre completo</label>
+        <input id="name" name="name" type="text"
+          placeholder="Escribe tu nombre" required maxlength="80">
+
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email"
+          placeholder="ejemplo@correo.com" required maxlength="120">
+
+        <label for="message">Tu mensaje</label>
+        <textarea id="message" name="message"
+          placeholder="¿En qué podemos ayudarte?"
+          required maxlength="1000"></textarea>
+
+        <button type="submit" class="button">Enviar mensaje</button>
+        <p id="form-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#inicio" class="logo">🍓 Furtísima</a>
+    <p>Frescura, sabor y color.</p>
+    <p>© <span id="year"></span> Furtísima. Todos los derechos reservados.</p>
+  </footer>
+
+  <dialog id="cart-dialog" aria-labelledby="cart-title">
+    <h2 id="cart-title">🛒 Tu carrito</h2>
+    <p id="empty-cart">Todavía no has agregado productos.</p>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: $0</p>
+
+    <div class="cart-actions">
+      <button id="clear-cart" class="secondary-button">Vaciar carrito</button>
+      <button id="close-cart" class="button">Seguir comprando</button>
+    </div>
+  </dialog>
+
+  <script>
+    "use strict";
+
+    const cart = [];
+
+    const countElement = document.getElementById("cart-count");
+    const dialog = document.getElementById("cart-dialog");
+    const itemsElement = document.getElementById("cart-items");
+    const totalElement = document.getElementById("cart-total");
+    const emptyElement = document.getElementById("empty-cart");
+
+    function formatMoney(value) {
+      return value.toLocaleString("es-CO", {
+        style: "currency",
+        currency: "COP",
+        maximumFractionDigits: 0
+      });
+    }
+
+    function renderCart() {
+      countElement.textContent = cart.reduce(
+        (sum, item) => sum + item.quantity, 0
+      );
+
+      itemsElement.replaceChildren();
+      let total = 0;
+
+      cart.forEach((item) => {
+        total += item.price * item.quantity;
+
+        const li = document.createElement("li");
+        li.textContent = item.name + " × " + item.quantity +
+          " = " + formatMoney(item.price * item.quantity);
+
+        itemsElement.appendChild(li);
+      });
+
+      totalElement.textContent = "Total: " + formatMoney(total);
+      emptyElement.hidden = cart.length > 0;
+    }
+
+    document.querySelectorAll(".add-button[data-name]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price);
+
+        if (!name || !Number.isFinite(price) || price < 0) return;
+
+        const existing = cart.find((item) => item.name === name);
+
+        if (existing) {
+          existing.quantity++;
+        } else {
+          cart.push({ name, price, quantity: 1 });
+        }
+
+        renderCart();
+        button.textContent = "¡Agregado!";
+        button.disabled = true;
+
+        setTimeout(() => {
+          button.textContent = "Agregar";
+          button.disabled = false;
+        }, 700);
+      });
+    });
+
+    document.getElementById("open-cart").addEventListener("click", () => {
+      renderCart();
+      dialog.showModal();
+    });
+
+    document.getElementById("close-cart").addEventListener("click", () => {
+      dialog.close();
+    });
+
+    document.getElementById("clear-cart").addEventListener("click", () => {
+      cart.length = 0;
+      renderCart();
+    });
+
+    document.getElementById("contact-form").addEventListener(
+      "submit", (event) => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+        const status = document.getElementById("form-status");
+
+        if (!form.reportValidity()) return;
+
+        status.textContent =
+          "Datos validados. Para enviar el mensaje realmente, " +
+          "es necesario conectar un servicio de contacto.";
+
+        form.reset();
+      }
+    );
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    renderCart();
+  </script>
+</body>
+</html>
